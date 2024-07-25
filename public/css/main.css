@@ -1,0 +1,167 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body, h1, h2, h3, h4, p,
+figure, blockquote, dl, dd {
+  margin-block-end: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1, h2, h3, h4,
+button, input, label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1, h2,
+h3, h4 {
+  text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input, button,
+textarea, select {
+  font: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/*********************** MAIN STYLES *********************/
+
+html {
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.coin-list,
+.coin-headers,
+.coin-item {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.coin-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.coin-headers,
+.coin-item {
+    display: grid;
+    grid-template-columns: 50px 50px repeat(4, 1fr);
+    align-items: center;
+    gap: 1rem;
+}
+
+.span-3 {
+    grid-column: span 3;
+}
+
+.coin-headers > *,
+.coin-item > * {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.coin-rank,
+.coin-header:first-child,
+.coin-icon,
+.coin-header:nth-child(2) {
+    width: 50px;
+}
+
+.coin-item {
+    border-top: 1px solid #ddd;
+}
+
+.coin-header {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.coin-rank {
+    text-align: center;
+}
+
+.coin-name {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+}
+
+.coin-name > .symbol {
+    font-size: .8rem;
+    font-weight: 400;
+    color: #666;
+}
+
+.coin-icon > img {
+    max-width: 30px;
+    max-height: 30px;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.positive-value {
+    color: green;
+}
+
+.negative-value {
+    color: red;
+}
