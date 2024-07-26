@@ -1,0 +1,81 @@
+<%- include('partials/header') %>
+<div class="pagination">
+    <a href="/">Coins</a> > <a href="/coin/<%= coin.uuid %>"><%= coin.name %></a>
+</div>
+<div class="details-header">
+    <img src="<%= coin.iconUrl %>" alt="<%= coin.name %> icon">
+    <h1 class="name"><%= coin.name %></h1>
+    <h2 class="symbol"><%= coin.symbol %></h2>
+    <span class="rank">#<%= coin.rank %></span>
+    <span class="price">$ <%= parseFloat(coin.price).toLocaleString('en-US', { maximumSignificantDigits: significantDigits(parseFloat(coin.price)) }) %></span>
+</div>
+
+<div class="details-summary">
+    <h3 class="summary-header">Summary</h3>
+    <p class="summary-description"><%= coin.description %></p>
+</div>
+<div class="details-statistics">
+    <div class="value">
+        <h3><%= coin.name %> Statistics</h3>
+        <p>A summary presenting key statistics about <%= coin.name %>, including details on the base and quote currency, its ranking, and the trading volume.</p>
+        <ul class="statistics-container">
+            <li class="statistic">
+                <span class="description">Price to USD</span>
+                <span class="value">$ <%= parseFloat(coin.price).toLocaleString('en-US', { maximumSignificantDigits: significantDigits(parseFloat(coin.price)) }) %></span>
+            </li>
+            <li class="statistic">
+                <span class="description">Coin Rank</span>
+                <span class="value"><%= coin.rank %></span>
+            </li>
+            <li class="statistic">
+                <span class="description">24h Volume</span>
+                <span class="value coin-market-cap">$ <%= parseFloat(coin['24hVolume']).toLocaleString('en-US') %></span>
+            </li>
+            <li class="statistic">
+                <span class="description">Market Cap</span>
+                <span class="value coin-market-cap">$ <%= parseFloat(coin.marketCap).toLocaleString('en-US') %></span>
+            </li>
+            <li class="statistic">
+                <span class="description">Volume / Market Cap</span>
+                <span class="value"><%= (parseInt(coin['24hVolume']) / parseInt(coin.marketCap)).toFixed(4)%></span>
+            </li>
+            <li class="statistic">
+                <span class="description">Fully Diluted Market Cap</span>
+                <span class="value coin-market-cap">$ <%= parseFloat(coin.fullyDilutedMarketCap).toLocaleString('en-US') %></span>
+            </li>
+            <li class="statistic">
+                <span class="description">All-time High</span>
+                <span class="value">$ <%= parseFloat(coin.allTimeHigh.price).toLocaleString('en-US', { maximumSignificantDigits: significantDigits(parseFloat(coin.allTimeHigh.price)) }) %></span>
+            </li>
+        </ul>
+    </div>
+    <div class="supply">
+        <h3><%= coin.name %> Supply</h3>
+        <p>Check out the overall and circulating supply of Bitcoin, along with explanations on how these figures are determined.</p>
+        <ul class="statistics-container">
+            <li class="statistic">
+                <span class="description">Circulating Supply</span>
+                <span class="value numerated"><%= parseFloat(coin.supply.circulating).toLocaleString('en-US', { maximumSignificantDigits: significantDigits(parseFloat(coin.supply.circulating)) }) %></span>
+            </li>
+            <li class="statistic">
+                <span class="description">Total Supply</span>
+                <span class="value numerated"><%= parseFloat(coin.supply.total).toLocaleString('en-US', { maximumSignificantDigits: significantDigits(parseFloat(coin.supply.total)) }) %></span>
+            </li>
+            <% if (locals.coin.supply.max) { %>
+            <li class="statistic">
+                <span class="description">Max Supply</span>
+                <span class="value numerated"><%= parseFloat(coin.supply.max).toLocaleString('en-US', { maximumSignificantDigits: significantDigits(parseFloat(coin.supply.max)) }) %></span>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</div>
+<h3 class="small-heading">Tags</h3>
+<% if (locals.coin.tags) { %>
+    <div class="tags">
+        <% coin.tags.forEach(tag => { %>
+            <div class="tag"><%= tag %></div>
+            <% }) %>
+    </div>
+<% } %>
+<%- include('partials/footer') %>

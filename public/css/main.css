@@ -34,6 +34,7 @@ body {
 h1, h2, h3, h4,
 button, input, label {
   line-height: 1.1;
+  margin-top: 0;
 }
 
 /* Balance text wrapping on headings */
@@ -77,6 +78,12 @@ html {
     font-family:Arial, Helvetica, sans-serif;
 }
 
+body {
+    background-color: #F8EDED;
+    padding: 0;
+    margin: 0;
+}
+
 .container {
     max-width: 1000px;
     margin: 0 auto;
@@ -86,6 +93,43 @@ html {
 
 a {
     text-decoration: none;
+}
+
+.small-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+header {
+    background-color: #FF8225;
+    height: 70px;
+    margin-bottom: 3rem;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-center-left {
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    color: #fff;
+    font-size: 2.5rem;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.pagination {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
 }
 
 .coin-list,
@@ -128,6 +172,11 @@ a {
 
 .coin-item {
     border-top: 1px solid #ddd;
+    transition: background-color 300ms;
+}
+
+.coin-item:hover {
+    background-color: rgba(0, 0, 0, 0.01);
 }
 
 .coin-header {
@@ -145,13 +194,16 @@ a {
     font-weight: 600;
 }
 
-.coin-name > .symbol {
-    font-size: .8rem;
+.symbol {
     font-weight: 400;
     color: #666;
 }
 
-.coin-icon > img {
+.coin-name .symbol {
+    font-size: .8rem;
+}
+
+.coin-icon img {
     max-width: 30px;
     max-height: 30px;
     object-fit: contain;
@@ -164,4 +216,149 @@ a {
 
 .negative-value {
     color: red;
+}
+
+/* DETAILS PAGE */
+
+.details-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #666;
+    margin-bottom: 2rem;
+}
+
+.details-header img {
+    max-width: 40px;
+    max-height: 40px;
+    object-fit: contain;
+}
+
+.details-header .symbol {
+    margin-top: 6px;
+}
+
+.details-header .rank {
+    font-size: 0.8rem;
+    padding: 1px 6px;
+    border: 1px solid #666;
+    border-radius: 3px;
+    color: #666;
+}
+
+.details-header .price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: 5px;
+}
+
+.tags {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.tag {
+    padding: 3px 6px;
+    border: 1px solid #B43F3F;
+    border-radius: 3px;
+    color: #B43F3F;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: all 300ms;
+}
+
+.tag:hover {
+    background-color: #B43F3F;
+    color:#F8EDED;
+}
+
+.details-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+}
+
+.details-summary .summary-header {
+    font-weight: 700;
+}
+
+.details-summary .summary-description {
+    margin-top: 0;
+}
+
+.details-statistics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.statistics-container {
+    list-style: none;
+    padding: 0;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+}
+
+.statistics-container .statistic {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.statistics-container .statistic:last-child {
+    border-bottom: none;
+}
+
+.statistics-container .value {
+    font-weight: 700
+}
+
+/* Footer */
+
+footer {
+    min-height: 60px;
+    margin-top: 3rem;
+    background-color: #173B45;
+    color: #fff;
+}
+
+footer p {
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .market-cap-header,
+    .coin-market-cap {
+        display: none;
+    }
+
+    .coin-headers,
+    .coin-item {
+        grid-template-columns: 50px 50px repeat(3, 1fr);;
+    }
+}
+
+@media (max-width: 480px) {
+    .change-header,
+    .coin-change {
+        display: none;
+    }
+
+    .coin-headers,
+    .coin-item {
+        grid-template-columns: 50px 50px repeat(2, 1fr);;
+    }
 }

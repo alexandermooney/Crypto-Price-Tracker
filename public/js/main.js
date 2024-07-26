@@ -22,15 +22,30 @@ prices.forEach(price => {
 const marketCaps = document.querySelectorAll('.coin-market-cap');
 
 marketCaps.forEach(marketCap => {
-    const value = marketCap.textContent.slice(1).replaceAll(',', '');
+    const value = marketCap.textContent.slice(2).replaceAll(',', '');
     console.log(value);
     const length = value.length;
     console.log(length);
     if (length === 13) {
-        marketCap.textContent = '$' + value.slice(0, 1) + '.' + value.slice(1, 3) + ' trillion'
+        marketCap.textContent = '$ ' + value.slice(0, 1) + '.' + value.slice(1, 3) + ' trillion'
     } else if (length >= 10 && length < 13) {
-        marketCap.textContent = '$' + value.slice(0, length - 9) + '.' + value.slice(length - 9, length - 7) + ' billion'
+        marketCap.textContent = '$ ' + value.slice(0, length - 9) + '.' + value.slice(length - 9, length - 7) + ' billion'
     } else if (length >= 7 && length < 10) {
-        marketCap.textContent = '$' + value.slice(0, length - 6) + '.' + value.slice(length - 6, length - 4) + ' million'
+        marketCap.textContent = '$ ' + value.slice(0, length - 6) + '.' + value.slice(length - 6, length - 4) + ' million'
+    }
+})
+
+
+const numerated = document.querySelectorAll('.numerated');
+
+numerated.forEach(number => {
+    const value = number.textContent.slice(2).replaceAll(',', '');
+    const length = value.length;
+    if (length === 13) {
+        number.textContent = value.slice(0, 1) + '.' + value.slice(1, 3) + ' trillion'
+    } else if (length >= 10 && length < 13) {
+        number.textContent = value.slice(0, length - 9) + '.' + value.slice(length - 9, length - 7) + ' billion'
+    } else if (length >= 7 && length < 10) {
+        number.textContent = value.slice(0, length - 6) + '.' + value.slice(length - 6, length - 4) + ' million'
     }
 })

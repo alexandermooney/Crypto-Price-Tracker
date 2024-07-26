@@ -1,21 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 50 Cryptocurrencies</title>
-    <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Top 50 Cryptocurrencies</h1>
+<%- include('partials/header') %>
+        <h1>Top Cryptocurrencies</h1>
         <% if (locals.coinList) { %>
             <ul class="coin-list">
                 <ul class="coin-headers">
                     <li class="coin-header span-3">Coin</li>
                     <li class="coin-header">Price</li>
-                    <li class="coin-header">Market Cap</li>
-                    <li class="coin-header">24 Hour Change</li>
+                    <li class="coin-header market-cap-header">Market Cap</li>
+                    <li class="coin-header change-header">24 Hour Change</li>
                 </ul>
                 <% coinList.forEach((coin, i) => { %>
                     <a href="/coin/<%= coin.uuid %>">
@@ -25,8 +16,8 @@
                             <li class="coin-name">
                                 <span class="name"><%= coin.name %></span><span class="symbol"><%= coin.symbol %></span></li>
                             <% if (parseFloat(coin.price)) %>
-                            <li class="coin-price">$<%= parseFloat(coin.price).toLocaleString('en-US', { maximumSignificantDigits: significantDigits(parseFloat(coin.price)) }) %></li>
-                            <li class="coin-market-cap">$<%= parseFloat(coin.marketCap).toLocaleString('en-US') %></li>
+                            <li class="coin-price">$ <%= parseFloat(coin.price).toLocaleString('en-US', { maximumSignificantDigits: significantDigits(parseFloat(coin.price)) }) %></li>
+                            <li class="coin-market-cap">$ <%= parseFloat(coin.marketCap).toLocaleString('en-US') %></li>
                             <li class="coin-change"><%= coin.change %>%</li>
                         </ul>
                     </a>
@@ -35,8 +26,4 @@
         <% } else { %>
             <p>Something went wrong :(<br>Please try again later.</p>
         <% } %>
-    </div>
-
-    <script src="js/main.js"></script>
-</body>
-</html>
+<%- include('partials/footer') %>
