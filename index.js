@@ -3,6 +3,7 @@ import axios from 'axios';
 import 'dotenv/config';
 import path from 'path';
 import { fileURLToPath } from "url";
+// import Highcharts from 'highcharts';
 
 const app = express();
 const PORT = 3000;
@@ -69,14 +70,19 @@ app.get('/coin/:uuid', async (req, res) => {
         const result = await axios.get(`${API_URL}/coin/${req.params.uuid}`, config);
         const coinInfo = result.data.data.coin;
 
-        const result2 = await axios.get(`${API_URL}/coin/${req.params.uuid}/history`, config);
-        console.log('data.data:', result2.data.data);
-        console.log('data.data.change', result2.data.data.change);
-        console.log('data.data.history', result2.data.data.history);
+        const priceHistory = await axios.get(`${API_URL}/coin/${req.params.uuid}/history`, {
+            headers: {
+                'x-access-token': API_KEY,
+            },
+            params: {
+                timePeriod: '5y',
+            },
+        });
 
         res.render('coinDetails', {
             coin: coinInfo,
-            significantDigits: significantDigits
+            significantDigits: significantDigits,
+            priceHistory: JSON.stringify(priceHistory.data.data.history),
         });
     } catch (error) {
         console.error(error.message);

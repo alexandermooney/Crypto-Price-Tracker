@@ -10,6 +10,8 @@
     <span class="price">$ <%= parseFloat(coin.price).toLocaleString('en-US', { maximumSignificantDigits: significantDigits(parseFloat(coin.price)) }) %></span>
 </div>
 
+<div id="chartContainer" data-uuid="<%= coin.uuid %>" data-name="<%= coin.name %>" data-priceHistory="<%= priceHistory %>"></div>
+
 <div class="details-summary">
     <h3 class="summary-header">Summary</h3>
     <p class="summary-description"><%= coin.description %></p>
@@ -78,4 +80,28 @@
             <% }) %>
     </div>
 <% } %>
-<%- include('partials/footer') %>
+
+</div>
+</main>
+
+<footer class="flex-center">
+    <div class="container">
+        <p>
+            &copy;
+            <% if (locals.year) { %>
+                <%= year %>
+            <% } else { %>
+                2024
+            <% } %>
+            Alex Mooney
+        </p>
+    </div>
+</footer>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/stock/modules/stock.js"></script>
+<script src="/js/chart.js"></script>
+<script src="/js/main.js"></script>
+
+</body>
+</html>
